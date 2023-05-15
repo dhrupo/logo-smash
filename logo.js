@@ -1,5 +1,4 @@
-function Insect(x, type) {
-
+function Logo(x, type) {
     this.origin = x; // from what point to oscillate
 
     this.position = createVector(0, 0);
@@ -14,8 +13,7 @@ function Insect(x, type) {
 /**
  * draws the insect based upon type
  */
-Insect.prototype.draw = function() {
-
+Logo.prototype.draw = function() {
     stroke(255);
     strokeWeight(3);
     fill(this.type ? "#00FFFF" : "#FF4444");
@@ -25,19 +23,15 @@ Insect.prototype.draw = function() {
 /**
  * forces bugs along their path
  */
-Insect.prototype.update = function() {
-
+Logo.prototype.update = function() {
     this.position.y += speed;
-
     this.position.x = cos(this.position.y * (0.005 * this.serpentine) + this.serpentine * 10) * (width / this.serpentine) + this.origin;
 }
 
 /**
  * returns whether or not x & y are within the bug
  */
-Insect.prototype.squashedBy = function(x, y) {
-
+Logo.prototype.squashedBy = function(x, y) {
     var d = dist(x, y, this.position.x, this.position.y);
-
     return (d < this.radius);
 };

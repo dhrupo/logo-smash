@@ -9,21 +9,19 @@ var speed; // speed at which the bugs travel
 var bugChance; // chance of a new bug being pushed
 
 function setup() {
-
     createCanvas(400, 600);
 
     score = 0;
     totalClicks = 0;
     playing = true;
 
-    speed = 3;
-    bugChance = 0.4;
+    speed = 5;
+    bugChance = 0.8;
 
     textSize(30);
 }
 
 function draw() {
-
     background(51);
 
     handleBugs();
@@ -40,7 +38,6 @@ function draw() {
  * squashes bugs
  */
 function mousePressed() {
-
     for (var i = 0; i < bugs.length; i++) {
 
         // update bug's state
@@ -60,7 +57,6 @@ function mousePressed() {
  * handles bugs array
  */
 function handleBugs() {
-
     for (var i = bugs.length - 1; i >= 0; i--) {
 
         /* update & draw */
@@ -69,13 +65,11 @@ function handleBugs() {
 
         if (bugs[i].position.y > height && !bugs[i].type) {
             // if the bug is off the screen and it's a bad bug
-
             endGame();
         }
 
         if (bugs[i].squashed) {
             // remove from bugs array
-
             bugs.splice(i, 1);
             score++;
         }
@@ -86,14 +80,11 @@ function handleBugs() {
  * attempts to push a new bug
  */
 function attemptNewBug(frame) {
-
-    if (frame % 60 === 0) { // every second
-
+    if (frame % 50 === 0) { // every second
         if (random() < bugChance) { // probability of a new bug
-
             var x = random(width / 2) + width / 4; // only in the middle
             var type = (random() > 0.8); // good or bad bug
-            bugs.push(new Insect(x, type));
+            bugs.push(new Logo(x, type));
         }
     }
 }
@@ -103,8 +94,7 @@ function attemptNewBug(frame) {
  * is set based upon frame and score
  */
 function handleDifficulty(frame, score) {
-
-    if (frame % 60 === 0) {
+    if (frame % 50 === 0) {
         // update once every second
 
         bugChance = map(score, 0, 500, 0.4, 0.999);
